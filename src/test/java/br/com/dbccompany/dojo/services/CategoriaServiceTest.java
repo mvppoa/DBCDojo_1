@@ -9,11 +9,14 @@ import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 /**
@@ -37,7 +40,7 @@ public class CategoriaServiceTest {
     }
 
     @Test
-    public void getAllCategories() {
+    public void getAllCategorias() {
 
         //dado
         List<Categoria> categories = Arrays.asList(new Categoria(), new Categoria(), new Categoria());
@@ -53,7 +56,21 @@ public class CategoriaServiceTest {
     }
 
     @Test
-    public void getCategoriaByName() {
+    public void getEmptyListOfCategoria(){
+
+        List<Categoria> categorias = new ArrayList<>();
+        when(categoriaRepository.findAll()).thenReturn(categorias);
+
+        List<CategoriaDTO> categoriaDTOS = categoriaService.getAllCategorias();
+
+        verify(categoriaRepository,times(1)).findAll();
+
+        assertEquals(0,categoriaDTOS.size());
+
+    }
+
+    @Test
+    public void getCategoriaByNome() {
 
         //dado
         Categoria categoria = new Categoria();

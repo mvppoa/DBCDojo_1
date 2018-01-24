@@ -31,7 +31,7 @@ public class CategoriaController {
 
     @GetMapping("{nome}")
     @ResponseStatus(HttpStatus.OK)
-    public CategoriaDTO getCategoriaByName(@PathVariable String nome){
+    public CategoriaDTO getCategoriaByNome(@PathVariable String nome){
         return categoriaService.getCategoriasByNome(nome);
     }
 }

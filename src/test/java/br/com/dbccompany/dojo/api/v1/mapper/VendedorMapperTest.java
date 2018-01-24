@@ -11,7 +11,7 @@ import static org.junit.Assert.assertEquals;
  */
 public class VendedorMapperTest {
 
-    public static final String NAME = "someName";
+    public static final String NAME = "Joey Montana";
 
     VendedorMapper vendedorMapper = VendedorMapper.INSTANCE;
 

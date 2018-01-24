@@ -50,7 +50,7 @@ public class CategoriaControllerTest {
     }
 
     @Test
-    public void testListCategories() throws Exception {
+    public void testListCategorias() throws Exception {
         CategoriaDTO categoria1 = new CategoriaDTO();
         categoria1.setId(1L);
         categoria1.setNome(NAME);
@@ -67,10 +67,25 @@ public class CategoriaControllerTest {
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.categorias", hasSize(2)));
+
+        /**
+         ArgumentCaptor<Set<CategoriaDTO>> argumentCaptor = ArgumentCaptor.forClass(Set.class);
+
+         //when
+         String viewName = controller.getIndexPage(model);
+
+
+         //then
+         assertEquals("categoriaController", viewName);
+         verify(recipeService, times(1)).getRecipes();
+         verify(model, times(1)).addAttribute(eq("recipes"), argumentCaptor.capture());
+         Set<Recipe> setInController = argumentCaptor.getValue();
+         assertEquals(2, setInController.size());
+         */
     }
 
     @Test
-    public void testGetByNameCategories() throws Exception {
+    public void testGetByNomeCategorias() throws Exception {
         CategoriaDTO categoria1 = new CategoriaDTO();
         categoria1.setId(1L);
         categoria1.setNome(NAME);
@@ -84,7 +99,7 @@ public class CategoriaControllerTest {
     }
 
     @Test
-    public void testGetByNameNotFound() throws Exception {
+    public void testGetByNomeNotFound() throws Exception {
 
         when(categoriaService.getCategoriasByNome(anyString())).thenThrow(ResourceNotFoundException.class);
 

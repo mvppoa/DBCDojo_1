@@ -53,52 +53,52 @@ public class ClienteServiceImplIT {
     }
 
     @Test
-    public void patchClienteUpdateFirstName() {
-        String updatedName = "UpdatedName";
+    public void patchClienteUpdatePrimeiroNome() {
+        String updatedNome = "UpdatedNome";
         long id = getClienteIdValue();
 
         Cliente originalCliente = clienteRepository.getOne(id);
         assertNotNull(originalCliente);
         //save original first nome
-        String originalFirstName = originalCliente.getPrimeiroNome();
-        String originalLastName = originalCliente.getUltimoNome();
+        String originalPrimeiroNome = originalCliente.getPrimeiroNome();
+        String originalUltimoNome = originalCliente.getUltimoNome();
 
         ClienteDTO clienteDTO = new ClienteDTO();
-        clienteDTO.setPrimeiroNome(updatedName);
+        clienteDTO.setPrimeiroNome(updatedNome);
 
         clienteService.patchCliente(id, clienteDTO);
 
         Cliente updatedCliente = clienteRepository.findById(id).get();
 
         assertNotNull(updatedCliente);
-        assertEquals(updatedName, updatedCliente.getPrimeiroNome());
-        assertThat(originalFirstName, not(equalTo(updatedCliente.getPrimeiroNome())));
-        assertThat(originalLastName, equalTo(updatedCliente.getUltimoNome()));
+        assertEquals(updatedNome, updatedCliente.getPrimeiroNome());
+        assertThat(originalPrimeiroNome, not(equalTo(updatedCliente.getPrimeiroNome())));
+        assertThat(originalUltimoNome, equalTo(updatedCliente.getUltimoNome()));
     }
 
     @Test
-    public void patchClienteUpdateLastName() {
-        String updatedName = "UpdatedName";
+    public void patchClienteUpdateUltimoNome() {
+        String updatedNome = "UpdatedNome";
         long id = getClienteIdValue();
 
         Cliente originalCliente = clienteRepository.getOne(id);
         assertNotNull(originalCliente);
 
         //save original first/last nome
-        String originalFirstName = originalCliente.getPrimeiroNome();
-        String originalLastName = originalCliente.getUltimoNome();
+        String originalPrimeiroNome = originalCliente.getPrimeiroNome();
+        String originalUltimoNome = originalCliente.getUltimoNome();
 
         ClienteDTO clienteDTO = new ClienteDTO();
-        clienteDTO.setUltimoNome(updatedName);
+        clienteDTO.setUltimoNome(updatedNome);
 
         clienteService.patchCliente(id, clienteDTO);
 
         Cliente updatedCliente = clienteRepository.findById(id).get();
 
         assertNotNull(updatedCliente);
-        assertEquals(updatedName, updatedCliente.getUltimoNome());
-        assertThat(originalFirstName, equalTo(updatedCliente.getPrimeiroNome()));
-        assertThat(originalLastName, not(equalTo(updatedCliente.getUltimoNome())));
+        assertEquals(updatedNome, updatedCliente.getUltimoNome());
+        assertThat(originalPrimeiroNome, equalTo(updatedCliente.getPrimeiroNome()));
+        assertThat(originalUltimoNome, not(equalTo(updatedCliente.getUltimoNome())));
     }
 
     private Long getClienteIdValue(){
