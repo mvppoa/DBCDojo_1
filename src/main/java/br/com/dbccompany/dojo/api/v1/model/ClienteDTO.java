@@ -23,4 +23,10 @@ public class ClienteDTO {
 
     @JsonProperty("cliente_url")
     private String clienteUrl;
+
+    public void setPrimeiroNome(String primeiroNome) {
+        this.primeiroNome = "TESTE"+primeiroNome;
+    }
+
+
 }

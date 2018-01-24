@@ -24,41 +24,41 @@ public class ClienteController {
         this.clienteService = clienteService;
     }
 
-    @ApiOperation(value= "Esta é uma lista de clientes", notes="Retorna todo o objeto de clientes")
+    @ApiOperation(value = "Esta é uma lista de clientes", notes = "Retorna todo o objeto de clientes")
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public ClienteListDTO getListOfClientes(){
+    public ClienteListDTO getListOfClientes() {
         return new ClienteListDTO(clienteService.getAllClientes());
     }
 
     @GetMapping({"/{id}"})
     @ResponseStatus(HttpStatus.OK)
-    public ClienteDTO getClienteById(@PathVariable Long id){
+    public ClienteDTO getClienteById(@PathVariable Long id) {
         return clienteService.getClienteById(id);
     }
 
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public ClienteDTO createNewCliente(@RequestBody ClienteDTO clienteDTO){
+    public ClienteDTO createNewCliente(@RequestBody ClienteDTO clienteDTO) {
         return clienteService.createNewCliente(clienteDTO);
     }
 
     @PutMapping({"/{id}"})
     @ResponseStatus(HttpStatus.OK)
-    public ClienteDTO updateCliente(@PathVariable Long id, @RequestBody ClienteDTO clienteDTO){
+    public ClienteDTO updateCliente(@PathVariable Long id, @RequestBody ClienteDTO clienteDTO) {
         return clienteService.saveClienteByDTO(id, clienteDTO);
     }
 
     @PatchMapping({"/{id}"})
     @ResponseStatus(HttpStatus.OK)
-    public ClienteDTO patchCliente(@PathVariable Long id, @RequestBody ClienteDTO clienteDTO){
+    public ClienteDTO patchCliente(@PathVariable Long id, @RequestBody ClienteDTO clienteDTO) {
         return clienteService.patchCliente(id, clienteDTO);
     }
 
     @DeleteMapping({"/{id}"})
     @ResponseStatus(HttpStatus.OK)
-    public void deleteCliente(@PathVariable Long id){
+    public void deleteCliente(@PathVariable Long id) {
         clienteService.deleteClienteById(id);
     }
 }
